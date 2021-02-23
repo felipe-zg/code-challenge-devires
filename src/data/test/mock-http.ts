@@ -1,3 +1,5 @@
+import faker from 'faker';
+
 import {
   HttpGetClient,
   HttpGetParams,
@@ -16,3 +18,7 @@ export class HttpGetClientSpy<R> implements HttpGetClient<R> {
     return this.response;
   }
 }
+
+export const mockGetRequest = (): HttpGetParams => ({
+  url: faker.internet.url(),
+});
