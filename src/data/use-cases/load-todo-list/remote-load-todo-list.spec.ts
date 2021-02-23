@@ -5,6 +5,7 @@ import { RemoteLoadTodoList } from './load-todo-list';
 import { HttpStatusCode } from 'data/protocols/http';
 import { TodoModel } from 'domain/models/todo-model';
 import { UnexpectedError } from 'domain/errors';
+import { mockTodoListModel } from 'domain/test';
 
 type SutTypes = {
   sut: RemoteLoadTodoList;
@@ -44,5 +45,16 @@ describe('RemoteLoadTodoList', () => {
     };
     const promise = sut.loadAll();
     await expect(promise).rejects.toThrow(new UnexpectedError());
+  });
+
+  it('should return a list of TodoModel if HttpGetClient returns 200', async () => {
+    const { sut, httpGetClientSpy } = makeSut();
+    const httpResult = mockTodoListModel();
+    httpGetClientSpy.response = {
+      statusCode: HttpStatusCode.ok,
+      body: httpResult,
+    };
+    const todoList = await sut.loadAll();
+    expect(todoList).toEqual(httpResult);
   });
 });
