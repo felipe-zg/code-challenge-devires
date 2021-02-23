@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { HttpGetClient, HttpGetParams, HttpResponse } from 'data/protocols/http';
+import { HttpGetClient, HttpGetParams } from 'data/protocols/http/http-get-client';
+import { HttpResponse } from 'data/protocols/http/http-response';
 
 export class AxiosHttpClient<R = unknown> implements HttpGetClient<R> {
   async get(params: HttpGetParams): Promise<HttpResponse<R>> {

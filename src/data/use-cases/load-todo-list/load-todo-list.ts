@@ -1,5 +1,6 @@
-import { HttpGetClient, HttpStatusCode } from 'data/protocols/http';
-import { UnexpectedError } from 'domain/errors';
+import { HttpGetClient } from 'data/protocols/http/http-get-client';
+import { HttpStatusCode } from 'data/protocols/http/http-response';
+import { UnexpectedError } from 'domain/errors/unexpected-error';
 import { TodoModel } from 'domain/models/todo-model';
 import { LoadTodoList } from 'domain/use-cases/load-todo-list';
 

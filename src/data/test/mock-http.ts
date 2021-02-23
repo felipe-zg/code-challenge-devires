@@ -1,11 +1,7 @@
 import faker from 'faker';
 
-import {
-  HttpGetClient,
-  HttpGetParams,
-  HttpResponse,
-  HttpStatusCode,
-} from 'data/protocols/http';
+import { HttpGetClient, HttpGetParams } from 'data/protocols/http/http-get-client';
+import { HttpResponse, HttpStatusCode } from 'data/protocols/http/http-response';
 
 export class HttpGetClientSpy<R> implements HttpGetClient<R> {
   url = '';

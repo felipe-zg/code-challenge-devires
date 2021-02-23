@@ -2,9 +2,9 @@ import faker from 'faker';
 
 import { HttpGetClientSpy } from 'data/test';
 import { RemoteLoadTodoList } from './load-todo-list';
-import { HttpStatusCode } from 'data/protocols/http';
+import { HttpStatusCode } from 'data/protocols/http/http-response';
 import { TodoModel } from 'domain/models/todo-model';
-import { UnexpectedError } from 'domain/errors';
+import { UnexpectedError } from 'domain/errors/unexpected-error';
 import { mockTodoListModel } from 'domain/test';
 
 type SutTypes = {
