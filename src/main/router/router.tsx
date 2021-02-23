@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { TodoList } from 'presentation/pages';
+import { makeTodoList } from 'main/factories/pages/todo-list/todo-list-factory';
 
 const Router: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={TodoList} />
+        <Route path="/" component={makeTodoList} />
       </Switch>
     </BrowserRouter>
   );
