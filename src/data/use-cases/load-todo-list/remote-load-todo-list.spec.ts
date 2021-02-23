@@ -57,4 +57,13 @@ describe('RemoteLoadTodoList', () => {
     const todoList = await sut.loadAll();
     expect(todoList).toEqual(httpResult);
   });
+
+  it('should return an empty list if HttpGetClient returns 204', async () => {
+    const { sut, httpGetClientSpy } = makeSut();
+    httpGetClientSpy.response = {
+      statusCode: HttpStatusCode.noContent,
+    };
+    const todoList = await sut.loadAll();
+    expect(todoList).toEqual([]);
+  });
 });
