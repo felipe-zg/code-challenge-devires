@@ -18,6 +18,8 @@ export class RemoteLoadTodoList implements LoadTodoList {
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
         return httpResponse.body;
+      case HttpStatusCode.noContent:
+        return [];
       default:
         throw new UnexpectedError();
     }
