@@ -1,5 +1,5 @@
-import { TodoModel } from '@/domain/models/todo-model';
+import { TodoModel } from 'domain/models/todo-model';
 
 export interface LoadTodoList {
-  loadAll: () => Promise<TodoModel[]>;
+  loadAll: () => Promise<TodoModel[] | undefined>;
 }

@@ -1,8 +1,9 @@
 import { HttpGetClient, HttpStatusCode } from 'data/protocols/http';
 import { UnexpectedError } from 'domain/errors';
 import { TodoModel } from 'domain/models/todo-model';
+import { LoadTodoList } from 'domain/use-cases/load-todo-list';
 
-export class RemoteLoadTodoList {
+export class RemoteLoadTodoList implements LoadTodoList {
   constructor(
     private readonly url: string,
     private readonly httpGetClient: HttpGetClient<TodoModel[]>
@@ -11,12 +12,12 @@ export class RemoteLoadTodoList {
     this.httpGetClient = httpGetClient;
   }
 
-  async loadAll(): Promise<void> {
+  async loadAll(): Promise<TodoModel[] | undefined> {
     const httpResponse = await this.httpGetClient.get({ url: this.url });
 
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
-        break;
+        return httpResponse.body;
       default:
         throw new UnexpectedError();
     }
