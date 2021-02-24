@@ -26,10 +26,19 @@ const todosSlice = createSlice({
         },
       }),
     },
+    remove: (state, { payload }: PayloadAction<{ id: number }>) => {
+      const index = state.findIndex((todo) => todo.id === payload.id);
+      if (index !== -1) {
+        state.splice(index, 1);
+      }
+    },
   },
 });
 
-export const { create: createTodoActionCreator } = todosSlice.actions;
+export const {
+  create: createTodoActionCreator,
+  remove: deleteTodoActionCreator,
+} = todosSlice.actions;
 
 export default todosSlice.reducer;
 
