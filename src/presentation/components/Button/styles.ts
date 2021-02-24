@@ -15,8 +15,8 @@ export const Container = styled.button<ContainerProps>`
   cursor: pointer;
   font-size: 1.7rem;
   font-weight: 700;
-  line-height: 2.5rem;
-  margin-top: 3rem;
+  line-height: 1rem;
+  margin-top: 2rem;
   width: 100%;
   transition: all 0.1s ease-in;
   outline: none;
@@ -36,6 +36,6 @@ export const Container = styled.button<ContainerProps>`
   }
 `;
 
-export const text = styled.text<TextProps>`
+export const text = styled.p<TextProps>`
   color: ${(props) => props.color || '#000'};
 `;
