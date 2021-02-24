@@ -2,7 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTodoActionCreator } from 'store/ducks/todos.duck';
 import { TodoModel } from 'domain/models/todo-model';
-import { Container } from './styles';
+
+import * as S from './styles';
+import { Button } from 'presentation/components';
 
 type Props = {
   todo: TodoModel;
@@ -16,11 +18,15 @@ const Todo: React.FC<Props> = ({ todo }: Props) => {
   };
 
   return (
-    <Container>
-      <h3>{todo.title}</h3>
-      <p>{todo.description}</p>
-      <button onClick={handleDelete}>Deletar</button>
-    </Container>
+    <S.Container>
+      <div>
+        <strong>{todo.title}</strong>
+        <p>{todo.description}</p>
+      </div>
+      <Button bgColor="#ff2400" color="#fff" type="button" onClick={handleDelete}>
+        Deletar
+      </Button>
+    </S.Container>
   );
 };
 
