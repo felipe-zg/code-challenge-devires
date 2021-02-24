@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-interface ContainerProps {
+export interface ContainerProps {
   backgroundColor: string | undefined;
 }
 
