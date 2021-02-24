@@ -2,6 +2,8 @@ import { createSlice, PayloadAction, Dispatch } from '@reduxjs/toolkit';
 import { RootState } from 'store';
 import { TodoModel } from 'domain/models/todo-model';
 import { makeRemoteLoadTodoList } from 'main/factories/use-cases/load-todo-list/remote-load-todo-list-factory';
+import { makeRemoteAddTodo } from 'main/factories/use-cases/add-todo/remote-add-todo-factory';
+import { AddTodoModel } from 'domain/models/add-todo-model';
 
 export interface State {
   loading: boolean;
@@ -45,6 +47,23 @@ const loadList = (dispatch: Dispatch) => {
       dispatch(setError(null));
       dispatch(setTodos(todos as TodoModel[]));
       dispatch(setLoading(false));
+    })
+    .catch((err: Error) => {
+      dispatch(setLoading(false));
+      dispatch(setError(err.message));
+    });
+};
+
+export const addTodo = (todo: AddTodoModel) => async (
+  dispatch: Dispatch,
+  getState: () => RootState
+) => {
+  getState();
+  dispatch(setLoading(true));
+  makeRemoteAddTodo()
+    .add(todo)
+    .then(() => {
+      loadList(dispatch);
     })
     .catch((err: Error) => {
       dispatch(setLoading(false));
