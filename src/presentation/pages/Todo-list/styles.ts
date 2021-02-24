@@ -49,3 +49,10 @@ export const List = styled.ul`
     grid-template-columns: 1fr;
   }
 `;
+export const Label = styled.label`
+  font-size: 1.5rem;
+`;
+
+export const InputWrapper = styled.div`
+  margin-bottom: 1rem;
+`;
