@@ -24,6 +24,16 @@ export class AxiosHttpClient<R = unknown> implements HttpGetClient<R> {
     return this.adapt(axiosResponse);
   }
 
+  async delete(params: HttpPostParams): Promise<HttpResponse<any>> {
+    let axiosResponse: AxiosResponse<any>;
+    try {
+      axiosResponse = await axios.delete(params.url, params.body);
+    } catch (error) {
+      axiosResponse = error.response;
+    }
+    return this.adapt(axiosResponse);
+  }
+
   private adapt(axiosResponse: AxiosResponse): HttpResponse<R> {
     return {
       statusCode: axiosResponse.status,

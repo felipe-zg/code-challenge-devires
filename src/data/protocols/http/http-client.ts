@@ -11,4 +11,5 @@ export type HttpRequest = {
 
 export interface HttpClient<R = any> {
   post: (data: HttpRequest) => Promise<HttpResponse<R>>;
+  delete: (data: HttpRequest) => Promise<HttpResponse<R>>;
 }
