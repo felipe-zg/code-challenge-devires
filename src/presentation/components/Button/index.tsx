@@ -15,8 +15,8 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   return (
-    <S.Container backgroundColor={bgColor} type={type} {...props}>
-      <S.text color={color}>{children}</S.text>
+    <S.Container backgroundColor={bgColor} type={type} {...props} color={color}>
+      {children}
     </S.Container>
   );
 };
