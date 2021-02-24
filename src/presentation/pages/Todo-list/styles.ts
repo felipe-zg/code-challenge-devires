@@ -56,3 +56,7 @@ export const Label = styled.label`
 export const InputWrapper = styled.div`
   margin-bottom: 1rem;
 `;
+
+export const Image = styled.img`
+  width: 30rem;
+`;

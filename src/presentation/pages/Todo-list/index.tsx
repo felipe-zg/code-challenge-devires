@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { State, selectTodos, getTodos, addTodo } from 'store/ducks/todos.duck';
 import { Load, Todo, Input, Button } from 'presentation/components';
 
+import emptyList from '../../assets/images/empty-list.svg';
+import sadFace from '../../assets/images/sad-face.svg';
+
 import * as S from './styles';
 
 const TodoList: React.FC = () => {
@@ -51,7 +54,9 @@ const TodoList: React.FC = () => {
               value={description}
             />
           </S.InputWrapper>
-          <Button type="submit">Criar</Button>
+          <Button bgColor="#ff0" color="#333" type="submit">
+            Criar
+          </Button>
         </S.Form>
       </S.NewTodo>
       <S.Body>
@@ -64,6 +69,18 @@ const TodoList: React.FC = () => {
           )}
         </S.List>
         {list.loading && <Load />}
+        {!list.todos.length && (
+          <>
+            <S.Image src={emptyList} />
+            <strong>Nada por aqui ainda!</strong>
+          </>
+        )}
+        {list.error && (
+          <>
+            <S.Image src={sadFace} />
+            <strong>Algo deu errado! Por favor, tente de novo.</strong>
+          </>
+        )}
       </S.Body>
     </div>
   );
