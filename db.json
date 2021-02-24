@@ -8,22 +8,17 @@
     {
       "title": "item de teste de post",
       "description": "esse item foi upado para a api com sucesso",
+      "id": 1
+    },
+    {
+      "title": "item de teste de post",
+      "description": "esse item foi upado para a api com sucesso",
+      "id": 2
+    },
+    {
+      "title": "item de teste de post",
+      "description": "esse eh mais unm item de teste ",
       "id": 3
-    },
-    {
-      "title": "item de teste de post",
-      "description": "esse item foi upado para a api com sucesso",
-      "id": 4
-    },
-    {
-      "title": "item de teste de post",
-      "description": "esse item foi upado para a api com sucesso",
-      "id": 5
-    },
-    {
-      "title": "item de teste de post",
-      "description": "esse item foi upado para a api com sucesso",
-      "id": 6
     }
   ]
 }

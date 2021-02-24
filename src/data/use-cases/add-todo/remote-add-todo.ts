@@ -7,7 +7,7 @@ import { HttpClient } from 'data/protocols/http/http-client';
 
 export class RemoteAddTodo implements AddTodo {
   private readonly url: string;
-  private readonly httpClient: HttpClient<any>;
+  private readonly httpClient: HttpClient<TodoModel>;
 
   constructor(url: string, httpClient: HttpClient<TodoModel>) {
     this.url = url;
@@ -26,7 +26,7 @@ export class RemoteAddTodo implements AddTodo {
       description: '',
     };
     switch (httpResponse.statusCode) {
-      case HttpStatusCode.ok:
+      case HttpStatusCode.created:
         return remoteAddTodo;
       default:
         throw new UnexpectedError();
