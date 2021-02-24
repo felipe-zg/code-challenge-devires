@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useState, useEffect } from 'react';
+import React, { ChangeEvent, useState, useEffect, FormEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { State, selectTodos, getTodos } from 'store/ducks/todos.duck';
+import { State, selectTodos, getTodos, addTodo } from 'store/ducks/todos.duck';
 import { Load, Todo, Input, Button } from 'presentation/components';
 
 import * as S from './styles';
@@ -8,31 +8,39 @@ import * as S from './styles';
 const TodoList: React.FC = () => {
   const dispatch = useDispatch();
   const list = useSelector(selectTodos) as State;
-  const [newTodoTitle, setNewTodoTitle] = useState<string>('');
-  const [newTodoDescription, setNewTodoDescription] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
 
   useEffect(() => {
     dispatch(getTodos());
   }, [dispatch]);
 
+  const handleCreateNewTodo = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    if (!title.length || !description.length) return;
+    dispatch(addTodo({ title, description }));
+    setTitle('');
+    setDescription('');
+  };
+
   const handleNewInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target.id === 'new-todo-title') {
-      setNewTodoTitle(e.target.value);
+      setTitle(e.target.value);
       return;
     }
-    setNewTodoDescription(e.target.value);
+    setDescription(e.target.value);
   };
 
   return (
     <div>
       <S.NewTodo>
-        <S.Form>
+        <S.Form onSubmit={handleCreateNewTodo}>
           <S.Label htmlFor="new-todo-title">Titulo:</S.Label>
           <S.InputWrapper>
             <Input
               onChange={handleNewInputChange}
               id="new-todo-title"
-              value={newTodoTitle}
+              value={title}
             />
           </S.InputWrapper>
           <S.Label htmlFor="new-todo-description">descrição:</S.Label>
@@ -40,7 +48,7 @@ const TodoList: React.FC = () => {
             <Input
               onChange={handleNewInputChange}
               id="new-todo-description"
-              value={newTodoDescription}
+              value={description}
             />
           </S.InputWrapper>
           <Button type="submit">Criar</Button>
