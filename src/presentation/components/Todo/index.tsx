@@ -1,10 +1,10 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteTodoActionCreator } from 'store/ducks/todos.duck';
+import React, { useCallback } from 'react';
 import { TodoModel } from 'domain/models/todo-model';
+import { removeTodo } from 'store/ducks/todos.duck';
 
 import * as S from './styles';
 import { Button } from 'presentation/components';
+import { useDispatch } from 'react-redux';
 
 type Props = {
   todo: TodoModel;
@@ -13,9 +13,12 @@ type Props = {
 const Todo: React.FC<Props> = ({ todo }: Props) => {
   const dispatch = useDispatch();
 
-  const handleDelete = (): void => {
-    dispatch(deleteTodoActionCreator({ id: todo.id }));
-  };
+  const handleDeleteTodo = useCallback(
+    (id: number) => {
+      dispatch(removeTodo(id));
+    },
+    [dispatch]
+  );
 
   return (
     <S.Container>
@@ -23,7 +26,12 @@ const Todo: React.FC<Props> = ({ todo }: Props) => {
         <strong>{todo.title}</strong>
         <p>{todo.description}</p>
       </div>
-      <Button bgColor="#ff2400" color="#fff" type="button" onClick={handleDelete}>
+      <Button
+        bgColor="#ff2400"
+        color="#fff"
+        type="button"
+        onClick={() => handleDeleteTodo(todo.id)}
+      >
         Deletar
       </Button>
     </S.Container>

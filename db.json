@@ -6,18 +6,8 @@
   ],
   "todos": [
     {
-      "id": 1,
-      "title": "Regar plantas",
-      "description": "Regar todas menos o cacto"
-    },
-    {
-      "id": 2,
-      "title": "Passar no code challenge",
-      "description": "Caprichar no código e passar no code challenge mais facil do planeta"
-    },
-    {
-      "title": "mais um item",
-      "description": "esse eh mais unm item de teste ",
+      "title": "item de teste de post",
+      "description": "esse item foi upado para a api com sucesso",
       "id": 3
     },
     {
@@ -26,9 +16,14 @@
       "id": 4
     },
     {
-      "title": "item 5",
-      "description": "item com id de numero 5",
+      "title": "item de teste de post",
+      "description": "esse item foi upado para a api com sucesso",
       "id": 5
+    },
+    {
+      "title": "item de teste de post",
+      "description": "esse item foi upado para a api com sucesso",
+      "id": 6
     }
   ]
 }
