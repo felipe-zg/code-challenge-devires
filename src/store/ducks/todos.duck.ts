@@ -4,6 +4,7 @@ import { TodoModel } from 'domain/models/todo-model';
 import { makeRemoteLoadTodoList } from 'main/factories/use-cases/load-todo-list/remote-load-todo-list-factory';
 import { makeRemoteAddTodo } from 'main/factories/use-cases/add-todo/remote-add-todo-factory';
 import { AddTodoModel } from 'domain/models/add-todo-model';
+import { makeRemoteRemoveTodo } from 'main/factories/use-cases/remove-todo/remote-remove-todo';
 
 export interface State {
   loading: boolean;
@@ -62,6 +63,23 @@ export const addTodo = (todo: AddTodoModel) => async (
   dispatch(setLoading(true));
   makeRemoteAddTodo()
     .add(todo)
+    .then(() => {
+      loadList(dispatch);
+    })
+    .catch((err: Error) => {
+      dispatch(setLoading(false));
+      dispatch(setError(err.message));
+    });
+};
+
+export const removeTodo = (id: number) => async (
+  dispatch: Dispatch,
+  getState: () => RootState
+) => {
+  getState();
+  dispatch(setLoading(true));
+  makeRemoteRemoveTodo(id.toString())
+    .remove()
     .then(() => {
       loadList(dispatch);
     })
