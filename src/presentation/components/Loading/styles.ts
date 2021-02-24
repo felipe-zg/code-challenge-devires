@@ -17,8 +17,8 @@ const HourGlass = keyframes`
 export const Load = styled.div`
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 8rem;
+  height: 8rem;
 
   &:after {
     content: ' ';
@@ -26,9 +26,9 @@ export const Load = styled.div`
     border-radius: 50%;
     width: 0;
     height: 0;
-    margin: 8px;
+    margin: 0.8rem;
     box-sizing: border-box;
-    border: 32px solid #000;
+    border: 3.2rem solid #000;
     border-color: #000 transparent #000 transparent;
     animation: ${HourGlass} 1.2s infinite;
   }
